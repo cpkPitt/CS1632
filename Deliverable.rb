@@ -13,24 +13,24 @@ rescue ArgumentError
 	exit
 end
 
-#this is the initial board of the game drawn with arbitrary number of rows/columns based on args
-def draw(v1)
-	(1..v1).each do |i|
-		(1..v1-1).each do |j|
-			print "."
-		end
-		puts "."
-	end
-	print "\n"
-end
-
 def setGameBoard(v1)
 	rows, cols = v1, v1  # your values
-	grid = Array.new(rows, Array.new(cols, ".") )
-	#Set arrays for the gameboard
+	$grid = Array.new(rows, Array.new(cols, ".") )
+	#Set arrays for the gameboard, Print statement is just here for test purposes
 	#(0..v1).each do |i|
 	#	print "#{grid[i]}\n"
 	#end
+end
+
+#this is the initial board of the game drawn with arbitrary number of rows/columns based on args
+def draw(v1)
+	(0..v1-1).each do |i|
+		(0..v1-2).each do |j|
+			print "#{$grid[i][j]}"
+		end
+		puts "#{$grid[i][v1-1]}"
+	end
+	print "\n"
 end
 
 def directions()
