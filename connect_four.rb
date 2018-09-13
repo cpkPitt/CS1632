@@ -11,6 +11,26 @@ def show_usage_and_exit
   exit 1
 end
 
+
+def has_letter (str) # return true if the string has any alphabetic
+  if str.match?(/[a-z]/)
+    return true
+  end
+  if str.match?(/[A-Z]/)
+    return true
+  end
+  return false
+
+end
+
+
+def has_symbols (str) # return true if the string has any symbols #, %, * ....
+  if str.match(/\W/)
+    return true
+  end
+  return false
+end
+
 # Returns true if and only if:
 # 1. There is one and only one argument
 # 2. That argument, when converted to an integer, is nonnegative
@@ -20,7 +40,7 @@ end
 # of the error
 
 def check_args(args)
-  args.count == 1 && args[0].to_i > 0
+  args.count == 1 && args[0].to_i > 0 && has_letter(args[0]) == false && has_symbols(args[0]) == false
 rescue StandardError
   false
 end
