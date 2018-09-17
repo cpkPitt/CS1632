@@ -1,3 +1,6 @@
+
+
+
 puts "\nThis game of Super Connect-Four will consist of #{ARGV[0]} rows and columns"
 puts "\nHere is the current game board:\n "
 
@@ -34,7 +37,7 @@ def draw(v1)
 end
 
 def directions()
-puts "\nEnter Column number where you wish to drop your next piece OR
+	puts "\nEnter Column number where you wish to drop your next piece OR
 Enter 'rot' to rotate the board OR
 Enter 'flip' to flip the board"
 end
@@ -54,6 +57,7 @@ end
 
 def input()##########################THIS IS WHERE YOU LEFT OFF...STRING COMPARISONS DONT WORK
 	input = $stdin.gets
+<<<<<<< HEAD
 	if input == "rot" #unless the input is rot, then rotate the board clockwise
 	
 	elsif input == "flip"	#unless the input is flip, then flip the board upside down
@@ -64,6 +68,14 @@ def input()##########################THIS IS WHERE YOU LEFT OFF...STRING COMPARI
 		puts "\nInvalid Command"
 		directions()
 		input()
+=======
+	if 1==1
+
+	elsif 2 == 2
+
+	else
+
+>>>>>>> e52d812b0ba5d38c3fae819b6601337fe1a2d90e
 	end
 	checkWin()
 end
