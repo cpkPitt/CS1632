@@ -52,14 +52,18 @@ def turn0()
 	turnX()
 end
 
-def input()
+def input()##########################THIS IS WHERE YOU LEFT OFF...STRING COMPARISONS DONT WORK
 	input = $stdin.gets
-	if 1==1
+	if input == "rot" #unless the input is rot, then rotate the board clockwise
 	
-	elsif 2 == 2
+	elsif input == "flip"	#unless the input is flip, then flip the board upside down
 	
-	else
+	elsif input.to_i > 0		#if input is a number greater than 0, put an X or 0 respectively at the first available index in 2nd array
 	
+	else	#invalid command so restate directions and reprompt
+		puts "\nInvalid Command"
+		directions()
+		input()
 	end
 	checkWin()
 end
