@@ -285,7 +285,7 @@ class Game
   def make_move(move)
     if move.casecmp('flip').zero?
       flip_board
-    elsif move == 'rot'
+    elsif move.casecmp('rot').zero?
       rotate_board
     else
       drop_piece move.to_i
