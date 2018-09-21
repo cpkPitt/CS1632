@@ -349,7 +349,7 @@ class Game
   # Pretty-print a 2-dimensional array
   def display_2d_array(arr)
     arr[0].size.times do |x|
-      print x
+      print x % 9
     end
     puts
 
