@@ -245,19 +245,28 @@ class Game
     pieces_fall
   end
 
-  # Shift all pieces in a column down one location.
+  # Shift all pieces in a column down.
   # The top location becomes a blank.
-  def shift_down(column)
-    above_saved_spot = BLANK_SPACE
-    saved_spot = BLANK_SPACE
-
-    @size.times do |x|
-      saved_spot = @board[x][column]
-      @board[x][column] = above_saved_spot
-      above_saved_spot = saved_spot
+  def shift_down_all(column)
+    buffer = [@size]
+    # fill buffer with blank space
+    buffer.fill(BLANK_SPACE, 0..@size - 1)
+    #loop through col and save values [X,O] in buf array
+    ind = 0
+    bottom_row = @size -1
+    @size.times do
+      if  @board[bottom_row][column] == 'X' || @board[bottom_row][column] == 'O'
+       buffer[ind] = @board[bottom_row][column]
+       ind += 1
+      end
+      bottom_row -= 1
+    end
+    # update the column from the buffer start to copy from bottom of col and going up
+    # and copy from buffer starting from the last index
+    0.upto(@size-1) do |i|
+      @board[@size-1-i][column] = buffer[i]
     end
   end
-
   # Returns true if for the column specified, it consists only of blank spaces
   # Returns false otherwise
   def all_blanks_in_column?(column)
@@ -269,15 +278,9 @@ class Game
 
   # Causes all pieces to "fall" to the "floor" after a rotation or flip
   def pieces_fall
-    bottom_row = @size - 1
-    @size.times do |column|
-      if @board[bottom_row][column] != BLANK_SPACE ||
-          # Skip this column, it is either full or entirely empty
-          all_blanks_in_column?(column)
-      else
-        # Shift column down until the lowest checker is in the bottom spot
-        shift_down column until @board[bottom_row][column] != BLANK_SPACE
-      end
+    @size.times do |x|
+      next if all_blanks_in_column? x
+      shift_down_all x
     end
   end
 
@@ -349,7 +352,7 @@ class Game
   # Pretty-print a 2-dimensional array
   def display_2d_array(arr)
     arr[0].size.times do |x|
-      print x % 9
+      print x % 10
     end
     puts
 

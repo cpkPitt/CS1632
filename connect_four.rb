@@ -7,7 +7,7 @@ require_relative 'game.rb'
 def show_usage_and_exit
   puts 'Usage:'
   puts 'ruby connect_four.rb *x*'
-  puts '*x* should be a nonnegative integer'
+  puts '*x* should be a nonnegative integer less than 120'
   exit 1
 end
 
@@ -40,7 +40,7 @@ end
 # of the error
 
 def check_args(args)
-  args.count == 1 && args[0].to_i > 0 && has_letter(args[0]) == false && has_symbols(args[0]) == false
+  args.count == 1 && args[0].to_i > 0 && has_letter(args[0]) == false && has_symbols(args[0]) == false && args[0].to_i <120
 rescue StandardError
   false
 end
